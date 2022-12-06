@@ -1,5 +1,5 @@
-#Угадай число. Компьютер сам загадывает и угадывает число
 import numpy as np
+
 def random_predict(number:int=1) -> int:
     """Рандомно угадываем число
 
@@ -9,14 +9,22 @@ def random_predict(number:int=1) -> int:
     Returns:
         int: Число попыток
     """
+    
     count = 0
+    minim = 1
+    maxim = 100
+
     while True:
         count += 1
-        predict_number = np.random.randint(1,101)
+        predict_number =  (minim + maxim)//10
         if number == predict_number:
-            break
-    return(count)
-print(f'количество попыток: {random_predict()}')
+            break  
+        elif (number > predict_number):
+            minim = predict_number
+        else:
+            maxim = predict_number
+    return count
+print(f'Количество попыток: {random_predict()}')
 
 def score_game(random_predict) -> int:
     """За какое количество попыток в среднем из 1000 подходов угадывает наш алгоритм
@@ -27,7 +35,7 @@ def score_game(random_predict) -> int:
     Returns:
         int: среднее количество попыток
     """
-    count_ls = [] #среднее количество попыток
+    count_ls = []
     np.random.seed(1)
     random_array = np.random.randint(1,101,size=1000)
     for number in random_array:
