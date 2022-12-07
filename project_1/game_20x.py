@@ -12,17 +12,20 @@ def random_predict(number:int=1) -> int:
     
     count = 0
     minim = 1
-    maxim = 100
-
+    maxim = 101
+    
+    predict_number = np.random.randint(minim, maxim)
+    
     while True:
         count += 1
-        predict_number =  (minim + maxim)//10
         if number == predict_number:
             break  
         elif (number > predict_number):
             minim = predict_number
+            predict_number = np.random.randint(minim, maxim)
         else:
             maxim = predict_number
+            predict_number = np.random.randint(minim, maxim)
     return count
 print(f'Количество попыток: {random_predict()}')
 
